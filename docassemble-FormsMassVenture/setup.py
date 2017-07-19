@@ -44,7 +44,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
                 out.setdefault(package, []).append(prefix+name)
     return out
 
-setup(name='docassemble.DocFiles',
+setup(name='docassemble.FormsMassVenture',
       version='0.0.1',
       description=('A docassemble extension.'),
       author=u'System Administrator',
@@ -56,6 +56,6 @@ setup(name='docassemble.DocFiles',
       install_requires=['docassemble', 'docassemble.base'],
       dependency_links=[],
       zip_safe=False,
-      package_data=find_package_data(where='docassemble/DocFiles/', package='docassemble.DocFiles'),
+      package_data=find_package_data(where='docassemble/FormsMassVenture/', package='docassemble.FormsMassVenture'),
      )
 
