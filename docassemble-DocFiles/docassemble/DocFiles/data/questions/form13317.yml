@@ -1,0 +1,174 @@
+# [Page Description] (Functions to create form 133.17)
+---
+include:
+  - basic-questions.yml
+---
+mandatory: True
+question: |
+  All documentation complete.
+buttons:
+  - Finished: leave
+    url: https://www.gooddocs.io
+  - Start Over: restart
+attachments:
+  - name: Form 133.17
+    filename: ${ representative.name } Form 133.17
+    content file: 
+      #- test.md
+      - form13317.md
+---
+objects:
+  - depository: Individual
+  - issuer : Individual
+  - representative : Individual
+mandatory: True
+---
+generic object: Individual
+question: |
+  What is company ${ x.object_possessive('name') }?
+fields:
+  - First Name: x.name.first
+    default: ${ x.first_name_hint() }
+  - Middle Name: x.name.middle
+    required: False
+  - Last Name: x.name.last
+    default: ${ x.last_name_hint() }
+  - Suffix: x.name.suffix
+    required: False
+    code: |
+      name_suffix()
+  - Title in Company: x.title
+  - Telephone number: x.tel
+    datatype: integer
+  - E-mail: x.email
+    datatype: email
+  - Address: x.address.address
+  - City: x.address.city
+  - State: x.address.state
+    default: 
+      code: |
+        case.state
+    code: |
+      us.states.mapping('abbr', 'name')
+  - Zip: x.address.zip
+    required: False
+---
+generic object: Individual
+question: |
+  What is ${ x.object_possessive('information') }?
+subquestion: An issuer is the entity in which investors will be purchasing securities
+fields:
+  - Company Name: x.company
+  - Telephone number: x.tel
+    datatype: integer
+  - E-mail: x.email
+    datatype: email
+  - Address: x.address.address
+  - City: x.address.city
+  - State: x.address.state
+    default: 
+      code: |
+        case.state
+    code: |
+      us.states.mapping('abbr', 'name')
+  - Zip: x.address.zip
+    required: False
+---
+code: |
+  issuer_url = "http://massventure.com/"
+  general_dealer = "MassVenture Inc."
+#Uncomment below if url or general dealer changes
+#---
+#generic object: Individual
+#question: |
+#  What is the Website address where the issuer’s securities will be offered?
+#fields:
+#  - URL: issuer_url
+#---
+#generic object: Individual
+#question: |
+#  Identify the general dealer or Texas crowdfunding portal operating the website:
+#fields:
+#  - Operating the website: general_dealer
+---
+generic object: Individual
+question: |
+  What is the Amount of the offering:?
+fields:
+  - "Minimum Offer": x.minOffer
+    datatype: range
+    min: 10000
+    max: 100000
+    step: 100
+  - "Maximum Offer": x.maxOffer
+    datatype: range
+    min: 25000
+    max: 1000000
+    step: 100    
+---
+generic object: Individual
+question: |
+  Name and address of the bank or other depository institution where investors’ funds are to be deposited:
+fields:
+  - Company Name: x.bank
+    default: "Frost Bank"
+  - Address: x.address.address
+    default: "100 W Houston St"
+  - City: x.address.city
+    default: "San Antonio"
+  - State: x.address.state
+    default: 
+      code: |
+        case.state
+    code: |
+      us.states.mapping('abbr', 'name')
+  - Zip: x.address.zip
+    required: False
+---
+generic list object: Individual
+question: |
+  What is ${ (ordinal(i) + " predecessors, owners, officers, directors, and control person") }'s name?
+fields:
+  - Somebody already mentioned: x.child[i]
+    datatype: object
+    disable others: True
+    choices: case.all_known_people()
+    exclude:
+      - x
+      - x.child
+  - First Name: x.child[i].name.first
+  - Middle Name: x.child[i].name.middle
+    required: False
+  - Last Name: x.child[i].name.last
+  - Suffix: x.child[i].name.suffix
+    required: False
+    code: |
+      name_suffix()
+  - contactType: x.child[i].contactType
+    code: |
+      ["predecessor", "owner", "officer", "directors", "control persons"]
+  - "Ownership percentage": x.child[i].percentage
+    show if: 
+       variable: x.child[i].contactType
+       is: "owner"
+    datatype: range
+    min: 0
+    max: 100
+    step: 1.0
+---
+generic object: Individual
+question: |
+  Do you have any predecessors, owners, officers, directors, and control persons?
+yesno: x.child.there_are_any
+decoration: children
+---
+generic object: Individual
+question: |
+  So far, you have told me about
+  ${ (x.child.number_as_word()) }
+  ${ x.child }.
+  Do you have any other predecessors, owners, officers, directors, and control persons?
+yesno: x.child.there_is_another
+decoration: children
+---
+

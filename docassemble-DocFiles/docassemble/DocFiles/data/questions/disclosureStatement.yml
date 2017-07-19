@@ -1,0 +1,189 @@
+---
+include:
+  - basic-questions.yml
+---
+mandatory: True
+question: |
+  All documentation complete.
+buttons:
+  - Finished: leave
+    url: https://www.gooddocs.io
+  - Start Over: restart
+attachments:
+  - name: Disclosure Statement
+    filename: ${ representative.name }_Disclosure_Statement
+    content file: 
+      - test.md
+      #- disclosureStatement.md
+      #- attachFiles.md
+---
+objects:
+  - contact: Individual
+  - depository: Individual
+  - issuer : Individual
+  - representative : Individual
+mandatory: True
+---
+question: |
+  Please upload the Preparer's Logo or Issuer's Logo.
+fields:
+  - "Would you like to upload the Preparer or Issuer's Logo?": issuer_logo_question
+    datatype: yesnoradio
+  - Issuer/Preparer Logo: issuer_logo
+    datatype: file
+    show if:
+       variable: issuer_logo_question
+       is: True
+---
+generic object: Individual
+question: |
+  What is company ${ x.object_possessive('name') }?
+fields:
+  - First Name: x.name.first
+    default: ${ x.first_name_hint() }
+  - Middle Name: x.name.middle
+    required: False
+  - Last Name: x.name.last
+    default: ${ x.last_name_hint() }
+  - Suffix: x.name.suffix
+    required: False
+    code: |
+      name_suffix()
+  - Title in Company: x.title
+---
+generic object: Individual
+question: |
+  What is ${ x.object_possessive('name') }?
+fields:
+  - Company's Full Legal Name: x.company
+  - Company Short (common) Name: x.companyShortName
+  - Entity Form: x.entity
+    choices:
+      - Limited Liability Company
+      - Corporation
+      - Partnership
+---
+question: |
+  Provide all information material to the offering, including, where appropriate, a discussion of significant factors that make the offering speculative or risky.
+subquestion: You must write a short statement below, but for a longer discussion you may upload an attachment to be incorporated by reference.
+fields: 
+  - "Attach PDF file?": info_pdf
+    datatype: yesnoradio
+  - Risk Factors: issuer_info_description
+    datatype: area
+    default: ""
+  - PDF: issuer_info_description_pdf
+    datatype: file
+    show if:
+       variable: info_pdf
+       is: True
+---
+question: |
+  Provide a general description of the company and its business model.
+subquestion: Type of entity, its form of business, principal office, history, business plan, and the intended use of the offering proceeds, including compensation paid to any owner, executive officer, director, or manager;
+fields: 
+  - "Attach PDF file?": general_pdf
+    datatype: yesnoradio
+  - General Description: issuer_general_description
+    datatype: area
+    default: ""
+  - PDF: issuer_general_description_pdf
+    datatype: file
+    show if:
+       variable: general_pdf
+       is: True
+---
+question: |
+  Provide a history of the issuer's operations and organization.
+fields: 
+  - "Attach PDF file?": hist_pdf
+    datatype: yesnoradio
+  - History: issuer_hist_description
+    datatype: area
+    default: ""
+  - PDF: issuer_hist_description_pdf
+    datatype: file
+    show if:
+       variable: hist_pdf
+       is: True
+---
+question: |
+  Provide a description the management of the company and principal stockholders.
+fields: 
+  - "Attach PDF file?": mgmt_pdf
+    datatype: yesnoradio
+  - Management: issuer_mgmt_description
+    datatype: area
+    default: ""
+  - PDF: issuer_mgmt_description_pdf
+    datatype: file
+    show if:
+       variable: mgmt_pdf
+       is: True
+---
+question: |
+  Describe how the proceeds from the offering will be used?
+fields: 
+  - "Attach PDF file?": proc_pdf
+    datatype: yesnoradio
+  - Beneficiary Statement: issuer_proc_description
+    datatype: area
+    default: ""
+  - PDF: issuer_proc_description_pdf
+    datatype: file
+    show if:
+       variable: proc_pdf
+       is: True
+---
+question: |
+  Provide financial information about the issuer.
+subquestion: An issuer must provide current financial statements certified by its principal executive officer to be true and complete in all material respects. If the issuer has audited or reviewed financial statements prepared within the last three years, those financial statements must be provided to investors as well.
+fields: 
+  - "Attach PDF file?": finc_pdf
+    datatype: yesnoradio
+  - Beneficiary Statement: issuer_finc_description
+    datatype: area
+    default: ""
+  - PDF: issuer_finc_description_pdf
+    datatype: file
+    show if:
+       variable: finc_pdf
+       is: True
+---
+question: |
+  Provide description of the securities being offered.
+subquestion: a description of the securities being offered and of any outstanding securities of the company, the amount of the offering, and the percentage ownership of the company represented by the offered securities.
+fields: 
+  - Type of Security: sec_type
+    choices:
+      - Promissory Note
+      - Convertible Note
+      - Membership / Partnership Interest
+      - Common Stock
+      - Preferred Stock
+      - Other
+  - "Attach PDF file?": sec_pdf
+    datatype: yesnoradio
+  - Beneficiary Statement: issuer_sec_description
+    datatype: area
+    default: ""
+  - PDF: issuer_sec_description_pdf
+    datatype: file
+    show if:
+       variable: sec_pdf
+       is: True
+---
+question: |
+  Provide a history of recent litigation and legal proceedings.
+fields: 
+  - "Attach PDF file?": legal_pdf
+    datatype: yesnoradio
+  - Beneficiary Statement: issuer_legal_description
+    datatype: area
+    default: ""
+  - PDF: issuer_legal_description_pdf
+    datatype: file
+    show if:
+       variable: legal_pdf
+       is: True
+---
