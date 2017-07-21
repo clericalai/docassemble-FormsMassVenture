@@ -5,7 +5,7 @@
 | Prepared by: ${representative.name} | ![MassVenture Logo](http://rwrlegal.com/wp-content/uploads/2015/01/MV_Site_Logo1.jpg){ width=10% }  | 
 |
 % if issuer_logo_question is True: 
-   ${ issuer_logo.show(width='100px') }
+   ${ issuer_logo.show(width='100px') } 
 % endif
 | | 
 [CENTER]
@@ -29,7 +29,7 @@ The issuer of the stock or other securities in this offering is ${issuer.company
 5.3 a company that has not yet defined its business operations, has no business plan, has no stated investment goal for the funds being raised, or that plans to engage in a merger or acquisition with an unspecified business entity. 
 [BR]
 **Texas Crowdfunding Compliance**
-6. This offering of securities is being made exclusively through MassVenture.com, a  registered Texas crowdfunding portal. You must access, discuss, and purchase all securities related to this offering through MassVenture.com. ${representative.name} and ${issuer.companyShortName} are unable to communicate with you regarding this sale except through a registered Texas crowdfunding portal. All consideration received for all sales of the securities in reliance on this exemption will not exceed $1 million in a 12-month period. ${issuer.company} will place a legend on the certificate or other document evidencing that the securities have not been registered and setting forth the limitations on resale contained in SEC Rule 147(e), including that for a period of nine months from the date of last sale by the issuer of the securities in the offering, all resales by any person, shall be made only to Texas residents.Material Information and Risk Factors 
+6. This offering of securities is being made exclusively through MassVenture.com, a  registered Texas crowdfunding portal. You must access, discuss, and purchase all securities related to this offering through MassVenture.com. ${representative.name} and ${issuer.companyShortName} are unable to communicate with you regarding this sale except through a registered Texas crowdfunding portal. All consideration received for all sales of the securities in reliance on this exemption will not exceed $1 million in a 12-month period. ${issuer.company} will place a legend on the certificate or other document evidencing that the securities have not been registered and setting forth the limitations on resale contained in SEC Rule 147(e), including that for a period of nine months from the date of last sale by the issuer of the securities in the offering, all resales by any person, shall be made only to Texas residents. 
 [BR]
 **Material Information and Risk Factors**[BR]
 7. ${issuer_info_description} 
@@ -65,7 +65,7 @@ The issuer of the stock or other securities in this offering is ${issuer.company
    Additional information on litigation and legal proceedings is attached at the end
 % endif
 [BR]
-Securities Disclosures[BR]
+**Securities Disclosures**[BR]
 15. This is an offering of securities under a Texas crowdfunding exemption to federal securities laws.  As such: 
 [BR]
 15.1 There is no ready market for the sale of the securities acquired from this offering; it may be difficult or impossible for an investor to sell or otherwise dispose of this investment. An investor may be required to hold and bear the financial risks of this investment indefinitely; 
@@ -78,11 +78,12 @@ Securities Disclosures[BR]
 [BR]
 **Financial Statements **
 16. ${issuer.companyShortName} represents and warrants that it has, to the extent that they exist, provided current financial statements certified by the principal executive officer to be true and complete in all material respects. These statements are available for viewing by investors at https://app.MassVenture.com These statements and other investment documentation are accessible exclusively through MassVenture.com, a registered Texas crowdfunding portal. You must access, discuss, and purchase all securities related to this offering through MassVenture.com. If ${issuer.companyShortName} has audited or reviewed financial statements, prepared within the last three years, such financial statements are also provided.
-**Concluding Remarks** [BR]
+[BR]**Concluding Remarks** [BR]
 This disclosure statement is intended as a guide to inform your investment in ${issuer.company} and is not a contract. This disclosure statement, along with a copy of ${issuer.companyShortName}’s Form 133.17 Crowdfunding Exemption Notice, and a summary of the offering, have been filed with the Texas Securities Commissioner. 
 [BR]
 [CENTER]
 ${issuer.company}:[BR] 
 ${representative.signature} [BR] 
 ${representative.name}, its ${representative.title} 
+
 

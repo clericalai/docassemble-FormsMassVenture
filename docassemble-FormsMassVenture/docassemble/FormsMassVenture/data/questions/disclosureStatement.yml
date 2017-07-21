@@ -13,9 +13,9 @@ attachments:
   - name: Disclosure Statement
     filename: ${ representative.name }_Disclosure_Statement
     content file: 
-      - test.md
-      #- disclosureStatement.md
-      #- attachFiles.md
+      #- test.md
+      - disclosureStatement.md
+      - attachFiles.md
 ---
 objects:
   - contact: Individual
@@ -37,7 +37,7 @@ fields:
 ---
 generic object: Individual
 question: |
-  What is company ${ x.object_possessive('name') }?
+ Each Company must have a primary representative. What is ${ x.object_possessive('name')}?
 fields:
   - First Name: x.name.first
     default: ${ x.first_name_hint() }
@@ -126,7 +126,7 @@ question: |
 fields: 
   - "Attach PDF file?": proc_pdf
     datatype: yesnoradio
-  - Beneficiary Statement: issuer_proc_description
+  - Proceeds from the offering: issuer_proc_description
     datatype: area
     default: ""
   - PDF: issuer_proc_description_pdf
@@ -141,7 +141,7 @@ subquestion: An issuer must provide current financial statements certified by it
 fields: 
   - "Attach PDF file?": finc_pdf
     datatype: yesnoradio
-  - Beneficiary Statement: issuer_finc_description
+  - Financial Information: issuer_finc_description
     datatype: area
     default: ""
   - PDF: issuer_finc_description_pdf
@@ -164,7 +164,7 @@ fields:
       - Other
   - "Attach PDF file?": sec_pdf
     datatype: yesnoradio
-  - Beneficiary Statement: issuer_sec_description
+  - Description of securities: issuer_sec_description
     datatype: area
     default: ""
   - PDF: issuer_sec_description_pdf
@@ -178,7 +178,7 @@ question: |
 fields: 
   - "Attach PDF file?": legal_pdf
     datatype: yesnoradio
-  - Beneficiary Statement: issuer_legal_description
+  - History of litigation & legal proceedings: issuer_legal_description
     datatype: area
     default: ""
   - PDF: issuer_legal_description_pdf

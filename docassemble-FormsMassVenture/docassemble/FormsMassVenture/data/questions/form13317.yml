@@ -25,7 +25,7 @@ mandatory: True
 ---
 generic object: Individual
 question: |
-  What is company ${ x.object_possessive('name') }?
+  Each Company must have a primary representative. What is ${ x.object_possessive('name')}?
 fields:
   - First Name: x.name.first
     default: ${ x.first_name_hint() }
